@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../jquery-1.12.2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.easing.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+			}
+			#box1{
+				top: 20px;
+				background: red;
+			}
+			#box2{
+				top: 140px;
+				background: orange;
+			}
+			#box3{
+				top: 260px;
+				background: yellow;
+			}
+			#box4{
+				top: 380px;
+				background: green;
+			}
+			#box5{
+				top: 500px;
+				background: blue;
+			}
+			#btn{
+				position: absolute;
+				right: 0;
+				top:50%;
+			}
+		</style>
+		<!--<script type="text/javascript">
+			$(function(){
+				$("#box1").click(function(){
+					$("#box1").animate({left:"1000px"},{easing: 'easeInOutBack',
+    duration: 600});
+				});
+				$("#box2").click(function(){
+					$("#box2").animate({left:"1000px"},{easing: 'easeOutBack',
+    duration: 600});
+				});
+				$("#box3").click(function(){
+					$("#box3").animate({left:"1000px"},{easing: 'easeInBack',
+    duration: 600});
+				});
+				$("#box4").click(function(){
+					$("#box4").animate({left:"1000px"},{easing: 'easeInOutBounce',
+    duration: 600});
+				});
+				$("#box5").click(function(){
+					$("#box5").animate({left:"1000px"},{easing: 'easeOutCirc',
+    duration: 600});
+				});	
+				$("#btn").click(function(){
+					$("#box1").animate({left:"1000px"},{easing: 'easeInOutBack',
+    duration: 600});
+					$("#box2").animate({left:"1000px"},{easing: 'easeOutBack',
+    duration: 600});
+					$("#box3").animate({left:"1000px"},{easing: 'easeInBack',
+    duration: 600});
+					$("#box4").animate({left:"1000px"},{easing: 'easeInOutBounce',
+    duration: 600});
+					$("#box5").animate({left:"1000px"},{easing: 'easeOutCirc',
+    duration: 600});
+				});
+			});
+		</script>-->
+		<script type="text/javascript">
+			$(function(){
+				var i=0;
+				$("#box1").click(function(){
+					
+					if(i%2==0){
+						$("#box1").animate({left:"1000px"},
+						{
+							easing: 'easeInOutBack',
+							duration: 600,
+							complete:function(){
+								i++;
+							}
+						});
+					}
+					else{
+						$("#box1").animate({left:"0px"},
+						{
+							easing: 'easeInOutBack',
+							duration: 600,
+							complete:function(){
+								i++;
+							}
+						});
+						
+					}
+				});
+			});
+		</script>
+	
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<div id="box3"></div>
+		<div id="box4"></div>
+		<div id="box5"></div>
+		<input type="button" id="btn" value="一起动" />
+	</body>
+</html>

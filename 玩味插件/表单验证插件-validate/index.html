@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table {
+				border-collapse: collapse;
+				width: 800px;
+			}
+			
+			table th {
+				width: 100px;
+				border: solid 1px #ccc;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+			}
+			
+			table td {
+				width: 100px;
+				border: solid 1px #ccc;
+				height: 26px;
+				line-height: 26px;
+				text-align: left;
+			}
+			
+			table td.left {
+				text-align: right;
+			}
+			
+			.address {
+				width: 500px;
+			}
+			
+			span.msg {
+				color: red;
+			}
+		</style>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/messages_cn.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<form action="" method="post" id="signupForm">
+			<table>
+				<tr>
+					<td class="left">姓名</td>
+					<td class="right"><input type="text" name="username" /></td>
+				</tr>
+				<tr>
+					<td class="left">班级</td>
+					<td class="right"><input type="text" name="classname" /></td>
+				</tr>
+				<tr>
+					<td class="left">电子邮箱</td>
+					<td class="right"><input type="text" name="email" /></td>
+				</tr>
+				<tr>
+					<td class="left">个人主页</td>
+					<td class="right"><input type="text" name="urladdress" /></td>
+				</tr>
+
+				<tr>
+					<td class="left">密码</td>
+					<td class="right"><input type="text" name="password1" id="password1" /></td>
+				</tr>
+				<tr>
+					<td class="left">确认密码</td>
+					<td class="right"><input type="text" name="password2" /></td>
+				</tr>
+
+				<tr>
+					<td class="left">出生日期</td>
+					<td class="right"><input type="text" name="birthday" /></td>
+				</tr>
+				<tr>
+					<td class="left">性别</td>
+					<td class="right"><input type="radio" name="sex" value="1" />男<input type="radio" name="sex" value="0" />女</td>
+				</tr>
+				<tr>
+					<td class="left">年龄</td>
+					<td class="right"><input type="text" name="age" /></td>
+				</tr>
+				<tr>
+					<td class="left">爱好</td>
+					<td class="right"><input type="checkbox" name="hobby" value="1" />乒乓球<input type="checkbox" name="hobby" value="2" />羽毛球<input type="checkbox" name="hobby" value="3" />篮球<input type="checkbox" name="hobby" value="4" />足球</td>
+				</tr>
+				<tr>
+					<td class="left">电话号码</td>
+					<td class="right"><input type="text" name="tel" /></td>
+				</tr>
+				<tr>
+					<td class="left">所在位置</td>
+					<td class="right">
+						<select name="address1">
+							<option value="">全部</option>
+							<option value="1">四川省</option>
+							<option value="2">北京市</option>
+							<option value="3">云南省</option>
+							<option value="4">贵州省</option>
+						</select>
+						<select name="address2">
+							<option value="">全部</option>
+							<option value="1">成都</option>
+							<option value="2">绵阳</option>
+							<option value="3">乐山</option>
+							<option value="4">宜宾</option>
+						</select>
+						<select name="address3">
+							<option value="">全部</option>
+							<option value="1">武侯区</option>
+							<option value="2">高新区</option>
+							<option value="3">锦江区</option>
+							<option value="4">双流县</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="left">头像上传</td>
+					<td class="right"><input type="file" name="headpic" /></td>
+				</tr>
+				<tr>
+					<td class="left">个人简介</td>
+					<td class="right"><textarea name="deascription" rows="5" cols="90"></textarea></td>
+				</tr>
+			</table>
+			<input type="submit" value="提交" /><input type="reset" value="重置" />
+		</form>
+		<script type="text/javascript">
+		
+			//当验证的规则不能满足我们的需求的时候，可以自定义验证。 musttang就是自定义的规则名称
+			$.validator.addMethod("musttang", function(value, element) {       
+				return value=="汤老师";//value代表你在文本框里面输入的值，element代表你验证的当前的元素
+			}, "输入的字符必须是汤老师");//验证没通过的提示
+
+			$(function() { //页面加载完毕之后执行
+
+				//1、首先是根据表单的id获取到要验证的表单对象
+				//2、用表单对象调用validate验证方法。
+				//3、 写验证规则
+				//4、写验证没通过的提示信息，如果不写，就默认提示，默认的提示是英文的。
+				//5、如果想让它提示中文，需要加入messages_cn.js
+				//6、如果引入了中文提示包，又自己定义了提示信息，以你自己定义的提示为准。
+
+				$("#signupForm").validate({
+					rules: { //这个对象里面定义了验证表单里面哪些元素
+						username: {
+							required: true, //验证规则
+							musttang:true//应用自定义验证
+						},
+						classname: {
+							required: true //验证规则
+						},
+						email: { //对同一个表单元素可以应用多个规则
+							required: true, //要求必须填写
+							email: true, //必须是email格式 
+							maxlength: 10 //长度不能超过10
+						},
+						urladdress: {
+							//required:true,//如果不加required:true，表示可以不填写，但是如果你填写了数据，那么就会对数据进行验证。如果没有填写数据，就不会验证
+							url: true //输入的数据必须是网址格式的   
+						},
+						password1: {
+							required: true, //要求必须填写
+							rangelength: [6, 10] 
+						},
+						password2: {
+							required: true, //要求必须填写
+							equalTo: "#password1"
+						},
+						sex: {
+							required: true,
+							minlength: 1
+						},
+						hobby: {
+							required: true,
+							minlength: 2
+						}
+
+					},
+					messages: {
+						username: {
+							required: "请填写你的姓名"
+						},
+						classname: {
+							required: "请填写班级",
+
+						},
+						email: {
+							required: "必须填写电子邮件", //要求必须填写
+							email: "电子邮件格式不正确",
+							maxlength: "长度不能超过10"
+						}
+
+					},
+					errorPlacement: function(error, element) {      
+						error.appendTo(element.parent());   
+					}
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

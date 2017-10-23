@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--引入插件样式-->
+		<link rel="stylesheet" type="text/css" href="css/completer.css"/>
+		<!--引入jq库-->
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!--引入插件js-->
+		<script src="js/completer.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#tbemail
+			{
+				position: absolute;
+				top:200px;
+			}
+			.aaaaa{
+				background-color: saddlebrown!important;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="tburl" id="tburl"/>
+			<input type="button" value="go" id="tbgo" />
+		</form>
+		<script type="text/javascript">
+			//实现功能：点击go按钮的时候，打开输入的网址
+				$("#tburl").completer({
+					complete: function() {//执行完成后的回调函数
+						var url="http://www."+$("#tburl").val();
+						$("#tbgo").attr("data-href",url);
+					},
+					separator: ".",//分隔符
+					source: ["com", "net", "org", "co", "io", "me", "cn", "com.cn"]//提示的数据
+				});
+			$("#tbgo").click(function(){
+				location.href=$("#tbgo").attr("data-href");
+			});
+		</script>
+	</body>
+</html>

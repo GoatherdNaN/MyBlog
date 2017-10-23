@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--引入插件样式-->
+		<link rel="stylesheet" type="text/css" href="css/completer.css"/>
+		<!--引入jq库-->
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!--引入插件js-->
+		<script src="js/completer.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#tbemail
+			{
+				position: absolute;
+				top:200px;
+			}
+			.aaaaa{
+				background-color: saddlebrown!important;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="tbtime" id="tbtime"/>
+		</form>
+		<script type="text/javascript">
+			//实现的功能：在文本框里面输入一个字符串的时候，自动补全电子邮件@后面的部分
+			$("#tbtime").completer({
+					filter: function(val) {//如果你输入的时间是26:30 filter起过滤的作用
+						val = val.replace(/\D/g, "").substr(0, 2);
+						if(val) {
+							val = parseInt(val, 10) || 0;
+							val = val > 23 ? 23 : val < 10 ? "0" + val : val;
+						}
+						return val;
+					},
+					separator: ":",
+					source: ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
+			});
+		</script>
+	</body>
+</html>

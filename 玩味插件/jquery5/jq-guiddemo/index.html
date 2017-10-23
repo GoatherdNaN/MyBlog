@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple jQuery auto complete plugin.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, jQuery plugin, auto complete, front-end, frontend, web development">
+  <meta name="author" content="Fengyuan Chen">
+  <title>Completer</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/completer.min.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  
+<link rel=" stylesheet" type="text/css" href="css/joyride-2.1.css">
+
+
+
+  
+</head>
+<body>
+  <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- Header -->
+  <header class="navbar navbar-static-top docs-header" id="top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-target="#navbar-collapse" data-toggle="collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./">Completer</a>
+      </div>
+      <nav class="collapse navbar-collapse" id="navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/fengyuanchen/completer/blob/master/README.md">Docs</a></li>
+          <li><a href="https://github.com/fengyuanchen/completer">GitHub</a></li>
+          <li><a href="https://fengyuanchen.github.io">More</a></li>
+          <li><a href="http://chenfengyuan.com">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Jumbotron -->
+  <div class="jumbotron docs-jumbotron">
+    <div class="container">
+      <h1>Completer <small class="version">v0.1.3</small></h1>
+      <p class="lead">A simple jQuery auto complete plugin.</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+    <h1 class="page-header" id="getting-started">Getting started</h1>
+
+    <!-- Installation -->
+    <h2 id="step1">Installation</h2>
+    <p>Include files:</p>
+    <pre class="prettyprint">&lt;script src=&quot;/path/to/jquery.js&quot;&gt;&lt;/script&gt;&lt;!-- jQuery is required --&gt;
+&lt;link  href=&quot;/path/to/completer.css&quot; rel=&quot;stylesheet&quot;&quot;&gt;
+&lt;script src=&quot;/path/to/completer.js&quot;&gt;&lt;/script&gt;</pre>
+
+    <!-- Initialize with "completer" attribute -->
+    <h2 class="page-header" >Usage</h2>
+    <h3>Initialize with <code>data-toggle="completer"</code> and <code>data-*</code> attributes</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;input type=&quot;text&quot; data-toggle=&quot;completer&quot; data-separator=&quot;/&quot; data-source=&quot;['img', 'css', 'js']&quot;&gt;</pre>
+    <p>Demo:</p>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Please input a path" data-toggle="completer" data-separator="/" data-source="['img', 'css', 'js']">
+    </div>
+
+    <!-- Initialize with "$.fn.completer" method -->
+    <h3>Initialize with <code>$.fn.completer</code> method</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;input type=&quot;text&quot; id=&quot;auto-complete-email&quot;&gt;</pre>
+    <p>Javascript:</p>
+    <pre class="prettyprint" >$(&quot;#auto-complete-email&quot;).completer({
+  separator: &quot;@&quot;,
+  source: [&quot;gmail.com&quot;, &quot;yahoo.com&quot;, &quot;hotmail.com&quot;, &quot;outlook.com&quot;, &quot;live.com&quot;, &quot;aol.com&quot;, &quot;mail.com&quot;]
+});</pre>
+    <p>Demo:</p>
+    <div class="form-group">
+      <input type="text" id="auto-complete-email" class="form-control" placeholder="Please input your email">
+    </div>
+
+    <!-- Configure -->
+    <h2 class="page-header">Configure</h2>
+
+    <h3>Setup</h3>
+    <p>You may set completer options with <code>$().completer(options)</code>.</p>
+    <p>If you want to change the global default options, You may use <code>$.fn.completer.setDefaults(options)</code>.</p>
+
+    <h3>Options</h3>
+    <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code>, as in <code>data-separator="@"</code>.</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>complete</td>
+          <td>function</td>
+          <td><code>function() {}</code></td>
+          <td>Will be run when complete.</td>
+        </tr>
+        <tr>
+          <td>itemTag</td>
+          <td>string</td>
+          <td><code>'li'</code></td>
+          <td>The element tag of list item.</td>
+        </tr>
+        <tr>
+          <td>filter</td>
+          <td>function</td>
+          <td><code>function(val) { return val }</code></td>
+          <td>The function will be passed the input value and run before show the list.</td>
+        </tr>
+        <tr>
+          <td>position</td>
+          <td>string</td>
+          <td><code>'bottom'</code></td>
+          <td id="step3">Options: <code>'top'</code>, <code>'right'</code>, <code>'bottom'</code> and <code>'left'</code>.</td>
+        </tr>
+        <tr>
+          <td>source</td>
+          <td>array</td>
+          <td><code>[]</code></td>
+          <td>The source data for complete or suggest.</td>
+        </tr>
+        <tr>
+          <td>selectedClass</td>
+          <td>string</td>
+          <td><code>'completer-selected'</code></td>
+          <td>A jQuery selector string, highlight the item when it's selected.</td>
+        </tr>
+        <tr>
+          <td>separator</td>
+          <td>string</td>
+          <td><code>''</code></td>
+          <td>This will be added between the value and attachment.</td>
+        </tr>
+        <tr>
+          <td>suggest</td>
+          <td>boolean</td>
+          <td><code>false</code></td>
+          <td>Set it "true" to start the suggestion mode.</td>
+        </tr>
+        <tr>
+          <td>template</td>
+          <td>string</td>
+          <td><code>'&lt;ul class=&quot;completer-container&quot;&gt;&lt;/ul&gt;'</code></td>
+          <td>The container of the completer.</td>
+        </tr>
+        <tr>
+          <td>zIndex</td>
+          <td>number</td>
+          <td><code>1</code></td>
+          <td>The css "z-index" property for the container.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- More Demos -->
+    <h2 class="page-header" id="step4">More demos</h2>
+
+    <h3>Show list on the top</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;input type=&quot;text&quot; data-toggle="completer" data-separator=&quot; &quot; data-source=&quot;['foo', 'bar', 'baz', 'qux']&quot; data-position=&quot;top&quot;&gt;</pre>
+    <p>Demo:</p>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Please input your email" data-toggle="completer" data-separator=" " data-source="['foo', 'bar', 'baz', 'qux']" data-position="top">
+    </div>
+
+    <h3>Filter the input</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;input type=&quot;text&quot; data-toggle="completer" data-separator=&quot; &quot; data-source=&quot;['foo', 'bar', 'baz', 'qux']&quot; data-position=&quot;top&quot;&gt;</pre>
+    <p>JavaScript:</p>
+    <pre class="prettyprint">$(&quot;#auto-complete-time&quot;).completer({
+  filter: function(val) {
+    val = val.replace(/\D/g, &quot;&quot;).substr(0, 2);
+
+    if (val) {
+      val = parseInt(val, 10) || 0;
+      val = val &gt; 23 ? 23 : val &lt; 10 ? &quot;0&quot; + val : val;
+    }
+
+    return val;
+  },
+  separator: &quot;:&quot;,
+  source: [&quot;00&quot;, &quot;05&quot;, &quot;10&quot;, &quot;15&quot;, &quot;20&quot;, &quot;25&quot;, &quot;30&quot;, &quot;35&quot;, &quot;40&quot;, &quot;45&quot;, &quot;50&quot;, &quot;55&quot;]
+});</pre>
+    <p>Demo:</p>
+    <div class="form-group">
+      <input type="text" id="auto-complete-time" class="form-control" placeholder="Please input a hour number">
+    </div>
+
+    <h3>Suggestion mode</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;input type=&quot;text&quot; data-toggle="completer" data-suggest=&quot;true&quot; data-source=&quot;['foo', 'bar', 'baz', 'qux']&quot;&gt;</pre>
+    <p>Demo:</p>
+    <div class="form-group" id="step5">
+      <input type="text" class="form-control" placeholder="You can type a &quot;b&quot; for test ~" data-toggle="completer" data-suggest="true" data-source="['foo', 'bar', 'baz', 'qux']">
+    </div>
+
+    <h3>Auto complete a domain</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;div&gt;
+  &lt;span&gt;www.&lt;/span&gt;
+  &lt;input id=&quot;auto-complete-domain&quot; type=&quot;text&quot;&gt;
+  &lt;span&gt;
+    &lt;a id=&quot;auto-complete-go&quot; href=&quot;&quot;&gt;Go!&lt;/a&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</pre>
+    <p>JavaScript:</p>
+    <pre class="prettyprint">var $autoCompleteDomain = $(&quot;#auto-complete-domain&quot;),
+  $autoCompleteGo = $(&quot;#auto-complete-go&quot;);
+
+  $autoCompleteDomain.completer({
+  complete: function() {
+    var url = &quot;http://www.&quot; + $autoCompleteDomain.val();
+
+    $autoCompleteGo.attr(&quot;href&quot;, url);
+  },
+  separator: &quot;.&quot;,
+  source: [&quot;com&quot;, &quot;net&quot;, &quot;org&quot;, &quot;co&quot;, &quot;io&quot;, &quot;me&quot;, &quot;cn&quot;, &quot;com.cn&quot;]
+});</pre>
+    <p>Demo:</p>
+    <div class="input-group">
+      <span class="input-group-addon">www.</span>
+      <input id="auto-complete-domain" class="form-control" type="text" placeholder="Please input your domain">
+      <span class="input-group-btn" id="step2">
+        <a id="auto-complete-go" class="btn btn-default" href="javascript:void(0);">Go!</a>
+      </span>
+    </div>
+
+    <h3>Auto suggest some websites</h3>
+    <p>HTML:</p>
+    <pre class="prettyprint">&lt;div&gt;
+  &lt;span&gt;https://&lt;/span&gt;
+  &lt;input id=&quot;auto-suggest-website&quot; type=&quot;text&quot;&gt;
+  &lt;span&gt;
+    &lt;a id=&quot;auto-suggest-go&quot; href=&quot;&quot;&gt;Go!&lt;/a&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</pre>
+    <p>JavaScript:</p>
+    <pre class="prettyprint">var $autoSuggestWebsite = $(&quot;#auto-suggest-website&quot;),
+  $autoSuggestGo = $(&quot;#auto-suggest-go&quot;);
+
+  $autoSuggestWebsite.completer({
+  complete: function() {
+    var url = &quot;https://&quot; + $autoSuggestWebsite.val();
+
+    $autoSuggestGo.attr(&quot;href&quot;, url);
+  },
+  source: [
+    &quot;facebook.com&quot;,
+    &quot;plus.google.com&quot;,
+    &quot;linkedin.com&quot;,
+    &quot;flickr.com&quot;,
+    &quot;youtube.com&quot;,
+    &quot;klout.com&quot;,
+    &quot;reddit.com&quot;,
+    &quot;digg.com&quot;,
+    &quot;tumblr.com&quot;,
+    &quot;twitter.com&quot;,
+    &quot;stumbleupon.com&quot;,
+    &quot;pinterest.com&quot;
+  ],
+  suggest: true
+});</pre>
+    <p>Demo:</p>
+    <div class="input-group">
+      <span class="input-group-addon">https://</span>
+      <input id="auto-suggest-website" class="form-control" type="text" placeholder="What website will you go ~">
+      <span class="input-group-btn">
+        <a id="auto-suggest-go" class="btn btn-default" href="javascript:void(0);">Go!</a>
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="docs-footer" >
+    <div class="container">
+      <p class="heart"></p>
+      <ul class="list-inline links" >
+        <li><a href="https://github.com/fengyuanchen/completer">GitHub</a></li>
+        <li><a href="https://github.com/fengyuanchen/completer/releases">Releases</a></li>
+        <li><a href="https://github.com/fengyuanchen/completer/blob/master/LICENSE">License</a></li>
+        <li><a href="http://chenfengyuan.com">About</a></li>
+      </ul>
+    </div>
+  </footer>
+  
+  
+ 
+ <ol id="chooseID" style="display: none;">
+<!--  /* data-id needs to be the same as the parent it will attach to */-->
+  <li data-id="step1" data-button="下一步">第一步：把下面的引用加到你的页面中，要调用插件首先要引用jq库和插件代码<br/><br/></li>
+
+ <!-- /* This tip will be display as a modal */-->
+  <li data-id="step2" data-button="下一步" data-options="tipLocation:right;tipAnimation:fade">
+  	 <h4>第二步</h4>
+  	 <p>第二步：然后把html代码弄过去。</p>
+  </li>
+
+<!--  /* using 'data-button' lets you have custom button text */-->
+  <li data-id="step3" data-class="parent-element-class" data-options="tipLocation:top;tipAnimation:fade" data-button="下一步"> 第三步：Content...<br/><br/></li>
+
+<!--  /* you can put a class for custom styling */-->
+  <li data-id="step4" class="custom-class" data-button = "下一步">第四步： Content...<br/><br/></li>
+  <li data-id="step5" class="custom-class" data-button = "完成">第五步： Content...<br/><br/></li>
+</ol>
+  
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/jquery.joyride-2.1.js"></script>
+  
+<script>
+$(window).load(function() {
+  $("#chooseID").joyride({
+   		 autoStart : true,
+   		 'timer': 0,  //自动播放的时间间隔
+   		 tipAnimation:'fade',//动画的形式
+   		 'tipAnimationFadeSpeed':2000,
+   		 'cookieMonster':true,           // true/false for whether cookies are used
+  		 'cookieName': 'JoyRide',         // choose your own cookie name
+       'cookieDomain': false,           // set to false or yoursite.com
+   		 modal:true,//以模态窗口形式显示，模态窗口的意思就是，只能操作当前的窗口，不能操作其他的元素
+   		'postRideCallback':function(){
+   			console.log("全部执行完后调用 一次!");
+   		},      
+   		'tipContainer':'body',   
+  		'postStepCallback': function(){
+  			console.log("每一步完成后都调用!");
+  		}
+       //expose: true
+  });
+});
+</script>
+  
+  
+</body>
+</html>

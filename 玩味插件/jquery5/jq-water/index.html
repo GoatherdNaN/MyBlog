@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/waterbubble.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<canvas id="dowebok"></canvas>
+		<script type="text/javascript">
+			
+			$('#dowebok').waterbubble({
+				 radius:200,//设置水球的大小
+				 lineWidth: 20,//边框宽度
+				 data:0.85,//数据多少
+				 txt: '85%',//显示文本
+				 textColor: 'rgba(0, 0, 0, 0.8)',//文本颜色
+				 font: 'bold 25px arial',//字体样式
+				 wave:true,//是否显示波纹
+				 waterColor: 'rgba(255, 0, 255, 1)',//水球颜色
+				 animation:true//是否显示动画				 
+			});
+
+		</script>
+	</body>
+</html>

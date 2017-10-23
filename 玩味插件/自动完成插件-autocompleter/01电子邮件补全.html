@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--引入插件样式-->
+		<link rel="stylesheet" type="text/css" href="css/completer.css"/>
+		<!--引入jq库-->
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!--引入插件js-->
+		<script src="js/completer.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			#tbemail
+			{
+				position: absolute;
+				top:200px;
+			}
+			.aaaaa{
+				background-color: saddlebrown!important;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<input type="text" name="tbemail" id="tbemail"/>
+		</form>
+		<script type="text/javascript">
+			//实现的功能：在文本框里面输入一个字符串的时候，自动补全电子邮件@后面的部分
+			$("#tbemail").completer({
+					separator: "@",//分隔符
+					itemTag:"li",//默认标签
+					position:"right",//列表展示的位置
+					selectedClass:"aaaaa",//定义被选中项的样式
+					//source 里面定义了提示的内容
+					source: ["163.com", "qq.com", "126.com", "139.com", "189.com","gmail.com", "hotmail.com", "icloud.com"],
+					complete:function(){
+						console.log("输入完成!");
+					}
+			});
+		</script>
+	</body>
+</html>

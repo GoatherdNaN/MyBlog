@@ -1,0 +1,1 @@
+[vue百度埋点插件](https://minlingchao1.github.io/2017/07/13/VueJs%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E6%8F%92%E4%BB%B6/)

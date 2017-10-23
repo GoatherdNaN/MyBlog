@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#box1{
+				border: solid 1px red;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1"></div>
+		
+		<input type="button" name="btn1" id="btn1" value="操作" />
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		1233
+		<script type="text/javascript">
+//			var a=1;
+//			//alert("123");
+//			console.log(a);
+//			var b=a+1;
+//			
+//			$("#box1").text(b);
+
+		//例1：输出table
+		 //console.table([["张三","男",12,"成都"],["李四","女",33,"重庆"]])
+		//例2：改变输出字符的样式
+		//console.log("%c 我想变成红色","color:red;font-size:50px; ");
+		//例3：对一行文本添加多个样式
+		//console.log("%c 我想变成  %c绿色","color:red;font-size:50px; ","color:green;");
+		//例4：给输出的文字加阴影
+		//console.log("%c两情若是久长时，又岂在朝朝暮暮！", "text-shadow: 3px 1px 1px grey;font-size:36px");
+		//例5：输出彩色文字		
+		//console.log('%c彩色文字啊 ', 'background-image:-webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );color:transparent;-webkit-background-clip: text;font-size:5em;');
+		//console.log("%c", "padding:50px 300px;line-height:120px;background:url('http://wayouliu.duapp.com/img/tagsImg/youth.gif') no-repeat;");
+		//断点调试
+		
+			function add(a,b)
+			{
+				var c=a+b
+				return c;
+			}
+			
+			$(function(){
+				$("#btn1").click(function(){
+					//alert("123");
+					var m1=100;
+					var m2=m1+200;
+					var m3=m1-m2;
+					var m4=add(m1,m3);
+					var m5=m4;
+					$("#box1").text(m5);
+					console.log(m5);//例如m5不小心写成m2了，就可以打断点调试
+				});
+			});
+		</script>
+	</body>
+</html>

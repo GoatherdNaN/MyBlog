@@ -1,0 +1,1 @@
+[点击查看详情](https://github.com/medatc/vuet/blob/master/docs/zh-cn/README.md)
