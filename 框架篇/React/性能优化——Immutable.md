@@ -2,12 +2,12 @@
 ###### shouldComponentUpdata
 
 ```
-import {is, fromJS} from 'immutable';
+import {is} from 'immutable';
 
 shouldComponentUpdate = (nextProps, nextState) => {
-    return !(this.props === nextProps || is(fromJS(this.props), fromJS(nextProps))) ||
-      !(this.state === nextState || is(fromJS(this.state), fromJS(nextState)));
-  }
+    return !(this.props === nextProps || is(this.props,nextProps)) ||
+      !(this.state === nextState || is(this.state,nextState));
+}
 ```
 ###### setState
 
